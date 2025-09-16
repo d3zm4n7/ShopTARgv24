@@ -1,0 +1,81 @@
+﻿@model ShopTARgv24.Models.Spaceships.SpaceshipCreateUpdateViewModel
+
+
+@if (Model.Id.HasValue)
+{
+    <h1>Update</h1>
+}
+else
+{
+    <h1>Create</h1>
+}
+
+
+
+<div>
+    <form method="post" enctype="multipart/form-data">
+        <input asp-for="Id" type="hidden"/>
+        <input asp-for="CreatedAt" type="hidden"/>
+        <input asp-for="ModifiedAt" type="hidden"/>
+
+        <div class="form-group row">
+            <label asp-for="Name" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="Name" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label asp-for="TypeName" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="TypeName" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label asp-for="BuiltDate" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="BuiltDate" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label asp-for="Crew" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="Crew" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label asp-for="EnginePower" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="EnginePower" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label asp-for="Passengers" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="Passengers" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label asp-for="InnerVolume" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="InnerVolume" class="form-control" />
+            </div>
+        </div>
+
+        @if (Model.Id.HasValue)
+        {
+            <input asp-action="update" asp-controller="spaceships" type="submit" class="btn btn-primary" value="Update" />
+        }
+        else
+        {
+            <input asp-action="create" asp-controller="spaceships" type="submit" class="btn btn-primary" value="Create" />
+        }
+        <a asp-action="Index" asp-controller="spaceships" class="btn btn-success">Back</a>
+
+    </form>
+</div>
