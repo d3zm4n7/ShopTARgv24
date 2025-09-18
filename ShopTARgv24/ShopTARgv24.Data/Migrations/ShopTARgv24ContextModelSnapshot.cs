@@ -11,7 +11,7 @@ using ShopTARgv24.Data;
 namespace ShopTARgv24.Data.Migrations
 {
     [DbContext(typeof(ShopTARgv24Context))]
-    partial class ShopTARgv24vContextModelSnapshot : ModelSnapshot
+    partial class ShopTARgv24ContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -71,9 +71,6 @@ namespace ShopTARgv24.Data.Migrations
 
                     b.Property<string>("TypeName")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
