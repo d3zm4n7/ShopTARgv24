@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ShopTARgv24.ApplicationServices.Services;
+using ShopTARgv24.Core.Domain;
 using ShopTARgv24.Core.Dto;
 using ShopTARgv24.Core.ServiceInterface;
 using ShopTARgv24.Data;
@@ -104,6 +105,55 @@ namespace ShopTARgv24.Controllers
             }
 
             return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Update(Guid id)
+        {
+            var kindergarden = await _kindergardensServices.DetailAsync(id);
+
+            if (kindergarden == null)
+            {
+                return NotFound();
+            }
+
+            var vm = new KindergardenCreateUpdateViewModel();
+
+            vm.Id = kindergarden.Id;
+            vm.GroupName = kindergarden.GroupName;
+            vm.ChildrenCount = kindergarden.ChildrenCount;
+            vm.KindergardenName = kindergarden.KindergardenName;
+            vm.TeacherName = kindergarden.TeacherName;
+
+            vm.CreatedAt = kindergarden.CreatedAt;
+            vm.UpdatedAt = kindergarden.UpdatedAt;
+
+            return View("CreateUpdate", vm);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(KindergardenCreateUpdateViewModel vm)
+        {
+            var dto = new KindergardenDto()
+            {
+                Id = vm.Id,
+                GroupName = vm.GroupName,
+                ChildrenCount = vm.ChildrenCount,
+                KindergardenName = vm.KindergardenName,
+                TeacherName = vm.TeacherName,
+
+                CreatedAt = vm.CreatedAt,
+                UpdatedAt = vm.UpdatedAt
+            };
+
+            var result = await _kindergardensServices.Update(dto);
+
+            if (result == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            return RedirectToAction(nameof(Index), vm);
         }
     }
 }
