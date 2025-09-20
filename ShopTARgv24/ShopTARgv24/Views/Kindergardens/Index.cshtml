@@ -5,7 +5,7 @@
     }
 
 <div>
-    <a asp-action="create" asp-controller="kindergarden" type="submit" class="btn btn-primary">Create</a>
+    <a asp-action="create" asp-controller="kindergardens" type="submit" class="btn btn-primary">Create</a>
 </div>
 
 <div class="h1">
@@ -33,9 +33,9 @@
                     <td>@kindergarden.KindergardenName</td>
                     <td>@kindergarden.TeacherName</td>
                     <td>
-                        <a asp-action="details" asp-controller="kindergarden" asp-route-id="@kindergarden.Id" class="btn btn-primary">Details</a>
-                        <a asp-action="update" asp-controller="kindergarden" asp-route-id="@kindergarden.Id" class="btn btn-primary">Update</a>
-                        <a asp-action="delete" asp-controller="kindergarden" asp-route-id="@kindergarden.Id" class="btn btn-outline-danger">Delete</a>
+                        <a asp-action="details" asp-controller="kindergardens" asp-route-id="@kindergarden.Id" class="btn btn-primary">Details</a>
+                        <a asp-action="update" asp-controller="kindergardens" asp-route-id="@kindergarden.Id" class="btn btn-primary">Update</a>
+                        <a asp-action="delete" asp-controller="kindergardens" asp-route-id="@kindergarden.Id" class="btn btn-outline-danger">Delete</a>
                     </td>
                 </tr>
 
