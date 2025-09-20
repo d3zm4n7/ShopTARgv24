@@ -1,4 +1,4 @@
-﻿namespace ShopTARgv24.Models.Kindergardens
+﻿namespace ShopTARgv24.Models.Spaceships
 {
     public class SpaceshipsIndexViewModel
     {

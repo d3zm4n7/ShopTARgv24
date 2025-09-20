@@ -1,0 +1,58 @@
+﻿@model ShopTARgv24.Models.Kindergardens.KindergardenDetailsViewModel
+
+<h1>Details</h1>
+
+<div>
+    <h4>Spaceship</h4>
+    <hr />
+    <dl class="row">
+        <div class="form-group row">
+            <label asp-for="Id" class="col-sm-2 col-form-label"></label>
+            @Html.DisplayFor(Model => Model.Id)
+        </div>
+    </dl>
+
+    <dl class="row">
+        <div class="form-group row">
+            <label asp-for="GroupName" class="col-sm-2 col-form-label"></label>
+            @Html.DisplayFor(Model => Model.GroupName)
+        </div>
+    </dl>
+
+    <dl class="row">
+        <div class="form-group row">
+            <label asp-for="ChildrenCount" class="col-sm-2 col-form-label"></label>
+            @Html.DisplayFor(Model => Model.ChildrenCount)
+        </div>
+    </dl>
+
+    <dl class="row">
+        <div class="form-group row">
+            <label asp-for="KindergardenName" class="col-sm-2 col-form-label"></label>
+            @Html.DisplayFor(Model => Model.KindergardenName)
+        </div>
+    </dl>
+
+    <dl class="row">
+        <div class="form-group row">
+            <label asp-for="TeacherName" class="col-sm-2 col-form-label"></label>
+            @Html.DisplayFor(Model => Model.TeacherName)
+        </div>
+    </dl>
+
+    <dl class="row">
+        <div class="form-group row">
+            <label asp-for="CreatedAt" class="col-sm-2 col-form-label"></label>
+            @Html.DisplayFor(Model => Model.CreatedAt)
+        </div>
+    </dl>
+
+    <dl class="row">
+        <div class="form-group row">
+            <label asp-for="UpdatedAt" class="col-sm-2 col-form-label"></label>
+            @Html.DisplayFor(Model => Model.UpdatedAt)
+        </div>
+    </dl>
+
+    <a asp-action="index" asp-controller="kindergardens" class="btn btn-primary">Back</a>
+</div>

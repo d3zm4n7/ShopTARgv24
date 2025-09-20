@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 using ShopTARgv24.Core.Dto;
 using ShopTARgv24.Core.ServiceInterface;
 using ShopTARgv24.Data;
-using ShopTARgv24.Models.Kindergardens;
+using ShopTARgv24.Models.Spaceships;
 
 
 namespace ShopTARgv24.Controllers
