@@ -76,5 +76,6 @@ namespace ShopTARgv24.ApplicationServices.Services
 
             return domain;
         }
+
     }
 }

@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using ShopTARgv24.ApplicationServices.Services;
 using ShopTARgv24.Core.Dto;
 using ShopTARgv24.Core.ServiceInterface;
 using ShopTARgv24.Data;
 using ShopTARgv24.Models.Kindergarden;
+using ShopTARgv24.Models.Kindergardens;
 
 
 namespace ShopTARgv24.Controllers
@@ -60,6 +62,43 @@ namespace ShopTARgv24.Controllers
             var result = await _kindergardensServices.Create(dto);
 
             if (result == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var kindergarden = await _kindergardensServices.DetailAsync(id);
+
+            if (kindergarden == null)
+            {
+                return NotFound();
+            }
+
+            var vm = new KindergardenDeleteViewModel();
+
+            vm.Id = kindergarden.Id;
+            vm.GroupName = kindergarden.GroupName;
+            vm.ChildrenCount = kindergarden.ChildrenCount;
+            vm.KindergardenName = kindergarden.KindergardenName;
+            vm.TeacherName = kindergarden.TeacherName;
+
+            vm.CreatedAt = kindergarden.CreatedAt;
+            vm.UpdatedAt = kindergarden.UpdatedAt;
+
+            return View(vm);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteConfirmation(Guid id)
+        {
+            var kindergarden = await _kindergardensServices.Delete(id);
+
+            if (kindergarden == null)
             {
                 return RedirectToAction(nameof(Index));
             }
