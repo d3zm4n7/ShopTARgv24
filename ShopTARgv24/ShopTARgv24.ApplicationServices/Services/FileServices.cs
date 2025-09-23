@@ -25,17 +25,17 @@ namespace ShopTARgv24.ApplicationServices.Services
         {
             if (dto.Files != null && dto.Files.Count > 0)
             {
-                if (!Directory.Exists(_webHost.ContentRootPath + "\\multipleFileUpload\\"))
+                if (!Directory.Exists(_webHost.ContentRootPath + "wwwroot\\multipleFileUpload\\"))
                 {
-                    Directory.CreateDirectory(_webHost.ContentRootPath + "\\multipleFileUpload\\");
+                    Directory.CreateDirectory(_webHost.ContentRootPath + "wwwroot\\multipleFileUpload\\");
                 }
 
                 foreach (var file in dto.Files)
                 {
                     //muutuja string uploadsFolder ja sinna laetakse failid
-                    string uploadsFolder = Path.Combine(_webHost.ContentRootPath, "multipleFileUpload");
+                    string uploadsFolder = Path.Combine(_webHost.ContentRootPath,"wwwroot", "multipleFileUpload");
                     //muutuja string uniqueFileName ja siin genereeritakse uus Guid ja lisatakse see faili ette
-                    string uniqueFileName = Guid.NewGuid().ToString() + "_" + file.Name;
+                    string uniqueFileName = Guid.NewGuid().ToString() + "_" + file.FileName;
                     //muutuja string filePath kombineeritakse ja lisatakse koos kausta unikaalse nimega
                     string filePath = Path.Combine(uploadsFolder, uniqueFileName);
 

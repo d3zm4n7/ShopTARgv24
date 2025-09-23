@@ -11,6 +11,9 @@
         public int? Passengers { get; set; }
         public int? InnerVolume { get; set; }
 
+        public List<ImageViewModel> Image { get; set; }
+            = new List<ImageViewModel>();
+
         public DateTime? CreatedAt { get; set; }
         public DateTime? ModifiedAt { get; set; }
     }

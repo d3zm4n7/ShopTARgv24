@@ -19,4 +19,13 @@
     <ProjectReference Include="..\ShopTARgv24.Data\ShopTARgv24.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\multipleFileUpload\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\multipleFileUpload\1d3f9a65-636b-4ec6-89d5-87cf100dd4b0_491308923_1091069296399497_4332351352250563487_n.jpg" />
+    <None Include="wwwroot\multipleFileUpload\f9cbac4e-3349-4343-b70d-44cf3c6a6167_491996901_1091069299732830_8365455499102547208_n.jpg" />
+  </ItemGroup>
+
 </Project>
