@@ -10,16 +10,16 @@ namespace ShopTARgv24.ApplicationServices.Services
     public class RealEstateServices : IRealEstateServices
     {
         private readonly ShopTARgv24Context _context;
-        private readonly IFileServices _fileServices;
+        //private readonly IFileServices _fileServices;
 
         public RealEstateServices
             (
-                ShopTARgv24Context context,
-                IFileServices fileServices
+                ShopTARgv24Context context
+                //IFileServices fileServices
             )
         {
             _context = context;
-            _fileServices = fileServices;
+            //_fileServices = fileServices;
         }
 
         public async Task<RealEstate> Create(RealEstateDto dto)

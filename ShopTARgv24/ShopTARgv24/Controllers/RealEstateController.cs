@@ -5,6 +5,7 @@ using ShopTARgv24.Data;
 using ShopTARgv24.Models.RealEstates;
 
 
+
 namespace ShopTARgv24.Controllers
 {
     public class RealEstateController : Controller
@@ -33,6 +34,14 @@ namespace ShopTARgv24.Controllers
                 });
 
             return View(result);
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            RealEstateCreateUpdateViewModel result = new();
+
+            return View("CreateUpdate", result);
         }
     }
 }
