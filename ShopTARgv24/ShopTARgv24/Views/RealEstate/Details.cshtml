@@ -1,6 +1,6 @@
-﻿@model ShopTARgv24.Models.RealEstates.RealEstateDeleteViewModel
+﻿@model ShopTARgv24.Models.RealEstates.RealEstateDetailsViewModel
 
-<h1>Delete</h1>
+<h1>Details</h1>
 
 <div>
     <h4>Real Estate</h4>
@@ -54,9 +54,6 @@
         </div>
     </dl>
 
-    <form asp-action="DeleteConfirmation">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" />
-        <a asp-action="index" asp-controller="realestate" class="btn btn-primary">Back</a>
-    </form>
+
+    <a asp-action="index" asp-controller="realestate" class="btn btn-primary">Back</a>
 </div>
