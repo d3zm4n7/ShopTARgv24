@@ -5,7 +5,7 @@
     }
 
 <div>
-    <a asp-action="create" asp-controller="realestates" type="submit" class="btn btn-primary">Create</a>
+    <a asp-action="create" asp-controller="realestate" type="submit" class="btn btn-primary">Create</a>
 </div>
 
 <div class="h1">
@@ -33,9 +33,9 @@
                     <td>@realestates.RoomNumber</td>
                     <td>@realestates.BuildingType</td>
                     <td>
-                        <a asp-action="details" asp-controller="realestates" asp-route-id="@realestates.Id" class="btn btn-primary">Details</a>
-                        <a asp-action="update" asp-controller="realestates" asp-route-id="@realestates.Id" class="btn btn-primary">Update</a>
-                        <a asp-action="delete" asp-controller="realestates" asp-route-id="@realestates.Id" class="btn btn-outline-danger">Delete</a>
+                        <a asp-action="details" asp-controller="realestate" asp-route-id="@realestates.Id" class="btn btn-primary">Details</a>
+                        <a asp-action="update" asp-controller="realestate" asp-route-id="@realestates.Id" class="btn btn-primary">Update</a>
+                        <a asp-action="delete" asp-controller="realestate" asp-route-id="@realestates.Id" class="btn btn-outline-danger">Delete</a>
                     </td>
                 </tr>
 
