@@ -6,5 +6,6 @@ namespace ShopTARgv24.Core.ServiceInterface
     public interface IFileServices
     {
         void FilesToApi(SpaceshipDto dto, Spaceship spaceship);
+
     }
 }

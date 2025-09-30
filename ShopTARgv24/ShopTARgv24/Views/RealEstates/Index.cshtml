@@ -1,0 +1,46 @@
+﻿@model IEnumerable<ShopTARgv24.Models.RealEstates.RealEstateIndexViewModel>
+
+@{
+    int rowNumber = 1;
+}
+
+<div>
+    <a asp-action="create" asp-controller="realestates" type="submit" class="btn btn-primary">Create</a>
+</div>
+
+<div class="h1">
+    Real Estates
+</div>
+<form method="post">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Nr</th>
+                <th scope="col">Area</th>
+                <th scope="col">Location</th>
+                <th scope="col">Room Number</th>
+                <th scope="col">Building Type</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var realestates in Model)
+            {
+                <tr>
+                    <td>@rowNumber</td>
+                    <td>@realestates.Area</td>
+                    <td>@realestates.Location</td>
+                    <td>@realestates.RoomNumber</td>
+                    <td>@realestates.BuildingType</td>
+                    <td>
+                        <a asp-action="details" asp-controller="realestates" asp-route-id="@realestates.Id" class="btn btn-primary">Details</a>
+                        <a asp-action="update" asp-controller="realestates" asp-route-id="@realestates.Id" class="btn btn-primary">Update</a>
+                        <a asp-action="delete" asp-controller="realestates" asp-route-id="@realestates.Id" class="btn btn-outline-danger">Delete</a>
+                    </td>
+                </tr>
+
+                rowNumber += 1;
+            }
+        </tbody>
+    </table>
+</form>

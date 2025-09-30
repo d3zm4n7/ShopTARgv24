@@ -20,8 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\RealEstates\" />
-    <Folder Include="Views\RealEstates\" />
     <Folder Include="wwwroot\multipleFileUpload\" />
   </ItemGroup>
 
