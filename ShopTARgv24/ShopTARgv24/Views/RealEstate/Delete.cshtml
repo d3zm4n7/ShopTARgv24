@@ -54,6 +54,23 @@
         </div>
     </dl>
 
+    @if (Model.Image != null && Model.Image.Any())
+    {
+        <div>
+            @foreach (var photo in Model.Image)
+            {
+                <div style="margin-bottom: 15px;">
+                    <img src="@photo.Image" alt="@photo.ImageTitle" style="max-width: 300px;" />
+                    <p>@photo.ImageTitle</p>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <p>No photos available.</p>
+    }
+
     <form asp-action="DeleteConfirmation">
         <input type="hidden" asp-for="Id" />
         <input type="submit" value="Delete" class="btn btn-danger" />

@@ -55,9 +55,21 @@ else
             </div>
         </div>
 
-        @foreach (var images in Model.Image)
+        @if (Model.Image != null && Model.Image.Any())
         {
-            <partial name="_Images" model="images" />
+            <div>
+                @foreach (var photo in Model.Image)
+                {
+                    <div style="margin-bottom: 15px;">
+                        <img src="@photo.Image" alt="@photo.ImageTitle" style="max-width: 300px;" />
+                        <p>@photo.ImageTitle</p>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <p>No photos available.</p>
         }
 
         @if (Model.Id.HasValue)
