@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using ShopTARgv24.Core.Dto;
 using ShopTARgv24.Core.ServiceInterface;
 using ShopTARgv24.Data;
@@ -176,6 +177,20 @@ namespace ShopTARgv24.Controllers
                 return NotFound();
             }
 
+            var photos = await _context.FileToDatabases
+                .Where(x => x.RealEstateId == id)
+                .Select(y => new RealEstateImageViewModel
+                {
+                    RealEstateId = y.Id,
+                    Id = y.Id,
+                    ImageData = y.ImageData,
+                    ImageTitle = y.ImageTitle,
+                    Image = $"data:image/gif;base64,{Convert.ToBase64String(y.ImageData)}"
+                })
+                .ToArrayAsync();
+
+
+
             var vm = new RealEstateDetailsViewModel();
 
             vm.Id = realestate.Id;
@@ -183,9 +198,10 @@ namespace ShopTARgv24.Controllers
             vm.Location = realestate.Location;
             vm.RoomNumber = realestate.RoomNumber;
             vm.BuildingType = realestate.BuildingType;
-
+            
             vm.CreatedAt = realestate.CreatedAt;
             vm.ModifiedAt = realestate.ModifiedAt;
+            vm.Image.AddRange(photos);
 
             return View(vm);
         }
