@@ -21,6 +21,8 @@ namespace ShopTARgv24.ApplicationServices.Services
             _webHost = webHost;
         }
 
+        //public async Task<FileToApi> RemoveImageFromApi(FileToApiDto dto) { }
+        //public async Task<List<FileToApi>> RemoveAllImagesFromApi(FileToApiDto [] dtos) { }
         public void FilesToApi(SpaceshipDto dto, Spaceship spaceship)
         {
             if (dto.Files != null && dto.Files.Count > 0)
@@ -51,6 +53,33 @@ namespace ShopTARgv24.ApplicationServices.Services
                         };
 
                         _context.FileToApis.AddAsync(path);
+                    }
+                }
+            }
+        }
+
+        public void UploadFilesToDatabase(RealEstateDto dto, RealEstate domain)
+        {
+            if (dto.Files != null && dto.Files.Any())
+            {
+                foreach (var file in dto.Files)
+                {
+                    if (file.Length > 0)
+                    {
+                        using (var target = new MemoryStream())
+                        {
+                            FileToDatabase files = new FileToDatabase() 
+                            {
+                                Id = Guid.NewGuid(),
+                                ImageTitle = file.FileName,
+                                RealEstateId = domain.Id
+                            };
+
+                            file.CopyTo(target);
+                            files.ImageData = target.ToArray();
+
+                            _context.FileToDatabases.Add(files);
+                        }
                     }
                 }
             }

@@ -7,5 +7,9 @@ namespace ShopTARgv24.Core.ServiceInterface
     {
         void FilesToApi(SpaceshipDto dto, Spaceship spaceship);
 
+        //Task<FileToApi> RemoveImageFromApi(FileToApiDto dto);
+        //Task<List<FileToApi>> RemoveAllImagesFromApi(FileToApiDto[] dtos);
+        void UploadFilesToDatabase(RealEstateDto dto, RealEstate domain);
+
     }
 }
