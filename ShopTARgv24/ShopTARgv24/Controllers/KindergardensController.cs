@@ -180,5 +180,22 @@ namespace ShopTARgv24.Controllers
 
             return View(vm);
         }
-    }
+
+        [HttpGet]
+        public async Task<List<KindergardenImageViewModel>> GetPhotosByKindergardenIdAsync(Guid id)
+        {
+            var photos = await _context.FileToDatabases
+                .Where(x => x.KindergardenId == id)
+                .Select(y => new KindergardenImageViewModel
+                {
+                    KindergardenId = y.Id,
+                    Id = y.Id,
+                    ImageData = y.ImageData,
+                    ImageTitle = y.ImageTitle,
+                    Image = $"data:image/gif;base64,{Convert.ToBase64String(y.ImageData)}"
+                })
+                .ToListAsync();
+
+            return photos;
+        }
 }

@@ -55,5 +55,32 @@ namespace ShopTARgv24.ApplicationServices.Services
                 }
             }
         }
+
+        public void UploadFilesToDatabaseKindergarden(KindergardenDto dto, Kindergarden domain)
+        {
+            if (dto.Files != null && dto.Files.Any())
+            {
+                foreach (var file in dto.Files)
+                {
+                    if (file.Length > 0)
+                    {
+                        using (var target = new MemoryStream())
+                        {
+                            FileToDatabase files = new FileToDatabase()
+                            {
+                                Id = Guid.NewGuid(),
+                                ImageTitle = file.FileName,
+                                KindergardenId = domain.Id
+                            };
+
+                            file.CopyTo(target);
+                            files.ImageData = target.ToArray();
+
+                            _context.FileToDatabases.Add(files);
+                        }
+                    }
+                }
+            }
+        }
     }
 }
