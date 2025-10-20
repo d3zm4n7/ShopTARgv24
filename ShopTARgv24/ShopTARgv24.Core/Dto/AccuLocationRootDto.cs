@@ -39,14 +39,14 @@
 
     public class Minimum
     {
-        public float Value { get; set; }
+        public double Value { get; set; }
         public string Unit { get; set; }
         public int UnitType { get; set; }
     }
 
     public class Maximum
     {
-        public float Value { get; set; }
+        public double Value { get; set; }
         public string Unit { get; set; }
         public int UnitType { get; set; }
     }
