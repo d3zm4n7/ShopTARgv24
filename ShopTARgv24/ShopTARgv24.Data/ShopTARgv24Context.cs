@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ShopTARgv24.Core.Domain;
+using ShopTARgv24.Core.Dto;
 
 
 namespace ShopTARgv24.Data
@@ -12,5 +13,6 @@ namespace ShopTARgv24.Data
         public DbSet<Spaceship> Spaceships { get; set; }
         public DbSet<FileToApi> FileToApis { get; set; }
         public DbSet<Kindergarden> Kindergardens { get; set; }
+        public DbSet<FileToDatabase> KindergardenFileToDatabase { get; set; }
     }
 }

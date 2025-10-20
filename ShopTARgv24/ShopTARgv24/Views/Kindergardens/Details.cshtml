@@ -3,7 +3,7 @@
 <h1>Details</h1>
 
 <div>
-    <h4>Spaceship</h4>
+    <h4>Kindergardens</h4>
     <hr />
     <dl class="row">
         <div class="form-group row">
@@ -54,5 +54,10 @@
         </div>
     </dl>
 
+    @foreach (var images in Model.Image)
+    {
+        <partial name="_Images" model="images" />
+        <br />
+    }
     <a asp-action="index" asp-controller="kindergardens" class="btn btn-primary">Back</a>
 </div>
