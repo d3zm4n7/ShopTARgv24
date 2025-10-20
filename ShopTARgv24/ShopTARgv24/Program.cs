@@ -18,6 +18,7 @@ namespace ShopTARgv24
             builder.Services.AddScoped<ISpaceshipsServices, SpaceshipsServices>();
             builder.Services.AddScoped<IFileServices, FileServices>();
             builder.Services.AddScoped<IRealEstateServices, RealEstateServices>();
+            builder.Services.AddScoped<IWeatherForecastServices, WeatherForecastServices>();
 
 
             builder.Services.AddDbContext<ShopTARgv24Context>(options =>

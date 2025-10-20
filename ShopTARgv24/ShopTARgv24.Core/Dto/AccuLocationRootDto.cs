@@ -2,28 +2,68 @@
 {
     public class AccuLocationRootDto
     {
-        public string LocalObservationDateTime { get; set; } = string.Empty;
-        public int EpochTime { get; set; }
-        public string WeatherText { get; set; } = string.Empty;
-        public int WeatherIcon { get; set; }
-        public bool HasPrecipitation { get; set; }
-        public string PrecipitationType { get; set; } = string.Empty;
-        public bool IsDayTime { get; set; }
-        public TemperatureDto? Temperature { get; set; } 
-        public string MobileLink { get; set; } = string.Empty;
-        public string Link { get; set; } = string.Empty;
+        public Headline Headline { get; set; }
+        public Dailyforecast[] DailyForecasts { get; set; }
     }
 
-    public class TemperatureDto
+    public class Headline
     {
-        public WeatherValueDto? Metric { get; set; }
-        public WeatherValueDto? Imperial { get; set; }
+        public DateTime EffectiveDate { get; set; }
+        public int EffectiveEpochDate { get; set; }
+        public int Severity { get; set; }
+        public string Text { get; set; }
+        public string Category { get; set; }
+        public DateTime EndDate { get; set; }
+        public int EndEpochDate { get; set; }
+        public string MobileLink { get; set; }
+        public string Link { get; set; }
     }
 
-    public class WeatherValueDto
+    public class Dailyforecast
     {
-        public double Value { get; set; }
-        public string Unit { get; set; } = string.Empty;
+        public DateTime Date { get; set; }
+        public int EpochDate { get; set; }
+        public Temperature Temperature { get; set; }
+        public Day Day { get; set; }
+        public Night Night { get; set; }
+        public string[] Sources { get; set; }
+        public string MobileLink { get; set; }
+        public string Link { get; set; }
+    }
+
+    public class Temperature
+    {
+        public Minimum Minimum { get; set; }
+        public Maximum Maximum { get; set; }
+    }
+
+    public class Minimum
+    {
+        public float Value { get; set; }
+        public string Unit { get; set; }
         public int UnitType { get; set; }
+    }
+
+    public class Maximum
+    {
+        public float Value { get; set; }
+        public string Unit { get; set; }
+        public int UnitType { get; set; }
+    }
+
+    public class Day
+    {
+        public int Icon { get; set; }
+        public string IconPhrase { get; set; }
+        public bool HasPrecipitation { get; set; }
+        public string PrecipitationType { get; set; }
+        public string PrecipitationIntensity { get; set; }
+    }
+
+    public class Night
+    {
+        public int Icon { get; set; }
+        public string IconPhrase { get; set; }
+        public bool HasPrecipitation { get; set; }
     }
 }
