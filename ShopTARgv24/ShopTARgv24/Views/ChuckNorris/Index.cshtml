@@ -1,0 +1,23 @@
+﻿@model ShopTARgv24.Models.ChuckNorris.ChuckNorrisViewModel
+
+@{
+    ViewData["Title"] = "Chuck Norris Joke";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@ViewData["Title"]</h1>
+
+    @if (!string.IsNullOrEmpty(Model.IconUrl))
+    {
+        <img src="@Model.IconUrl" alt="Chuck Norris Icon" class="mt-3 mb-3" />
+    }
+
+    <blockquote class="blockquote" style="font-size: 1.5rem;">
+        <p class="mb-0">@Model.Joke</p>
+        <footer class="blockquote-footer mt-2">Chuck Norris</footer>
+    </blockquote>
+
+    <a asp-action="Index" asp-controller="ChuckNorris" class="btn btn-primary mt-4">
+        Получить еще одну шутку
+    </a>
+</div>

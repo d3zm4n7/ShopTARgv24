@@ -21,8 +21,13 @@ namespace ShopTARgv24
             builder.Services.AddScoped<IWeatherForecastServices, WeatherForecastServices>();
 
 
+
+
             builder.Services.AddDbContext<ShopTARgv24Context>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+            builder.Services.AddScoped<IChuckNorrisServices, ShopTARgv24.ApplicationServices.Services.ChuckNorrisServices>();
+            builder.Services.AddHttpClient<IChuckNorrisServices, ShopTARgv24.ApplicationServices.Services.ChuckNorrisServices>();
 
             var app = builder.Build();
 
