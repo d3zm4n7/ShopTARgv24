@@ -43,7 +43,7 @@ namespace ShopTARgv24.Controllers
             //_weatherForecastServices.AccuWeatherResult(dto);
             _weatherForecastServices.AccuWeatherResultWebClient(dto);
             AccuWeatherViewModel vm = new();
-            //vm.CityName = dto.CityName;
+            vm.CityName = dto.CityName;
             vm.EffectiveDate = dto.EffectiveDate;
             vm.EffectiveEpochDate = dto.EffectiveEpochDate;
             vm.Severity = dto.Severity;
