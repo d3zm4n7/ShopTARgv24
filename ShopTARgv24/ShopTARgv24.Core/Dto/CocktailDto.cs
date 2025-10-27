@@ -11,7 +11,7 @@ namespace ShopTARgv24.Core.Dto
 
         public class Rootobject
         {
-            public Drink[] drinks { get; set; }
+            public Drink[] drinks { get; set; } 
         }
 
         public class Drink

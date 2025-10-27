@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ShopTARgv24.Core.ServiceInterface
 {
-    public class ICocktailServices
+    public interface ICocktailServices
     {
+        Task<string> SearchCocktails(string searchTerm);
     }
 }

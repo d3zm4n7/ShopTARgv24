@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
-using ShopTARgv24.ApplicationServices.Services;
 using ShopTARgv24.Core.ServiceInterface;
+using ShopTARgv24.ApplicationServices.Services;
+
+
 using ShopTARgv24.Data;
 
 namespace ShopTARgv24
@@ -26,8 +28,12 @@ namespace ShopTARgv24
             builder.Services.AddDbContext<ShopTARgv24Context>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-            builder.Services.AddScoped<IChuckNorrisServices, ShopTARgv24.ApplicationServices.Services.ChuckNorrisServices>();
-            builder.Services.AddHttpClient<IChuckNorrisServices, ShopTARgv24.ApplicationServices.Services.ChuckNorrisServices>();
+            builder.Services.AddScoped<IChuckNorrisServices, ChuckNorrisServices>();
+            builder.Services.AddHttpClient<IChuckNorrisServices, ChuckNorrisServices>();
+
+            builder.Services.AddScoped<ICocktailServices, CocktailServices>();
+            builder.Services.AddHttpClient<ICocktailServices, CocktailServices>();
+
 
             var app = builder.Build();
 
