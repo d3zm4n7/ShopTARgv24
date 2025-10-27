@@ -22,7 +22,7 @@ namespace ShopTARgv24.Controllers
 
             if (jokeDto == null)
             {
-                viewModel.Joke = "Не удалось загрузить шутку. Чак Норрис не в настроении.";
+                viewModel.Joke = "Couldn't get a joke. Chuck is not in a mood.";
             }
             else
             {
