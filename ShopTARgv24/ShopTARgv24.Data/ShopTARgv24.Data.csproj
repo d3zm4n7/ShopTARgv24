@@ -8,8 +8,11 @@
 
   <ItemGroup>
     <Compile Remove="Migrations.old\**" />
+    <Compile Remove="Migrations2.old\**" />
     <EmbeddedResource Remove="Migrations.old\**" />
+    <EmbeddedResource Remove="Migrations2.old\**" />
     <None Remove="Migrations.old\**" />
+    <None Remove="Migrations2.old\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,6 +21,8 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.10">
       <PrivateAssets>all</PrivateAssets>

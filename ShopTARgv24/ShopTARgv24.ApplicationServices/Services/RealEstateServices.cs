@@ -67,22 +67,27 @@ namespace ShopTARgv24.ApplicationServices.Services
 
         public async Task<RealEstate> Update(RealEstateDto dto)
         {
-            RealEstate domain = new();
+            var domain = await _context.RealEstates
+                .FirstOrDefaultAsync(x => x.Id == dto.Id);
 
-            domain.Id = dto.Id;
+            if (domain == null)
+                return null;
+
             domain.Area = dto.Area;
             domain.Location = dto.Location;
             domain.RoomNumber = dto.RoomNumber;
             domain.BuildingType = dto.BuildingType;
-
-            domain.CreatedAt = dto.CreatedAt;
             domain.ModifiedAt = DateTime.Now;
 
-            _context.RealEstates.Update(domain);
-            await _context.SaveChangesAsync();
+            if (dto.Files != null)
+            {
+                _fileServices.UploadFilesToDatabase(dto, domain);
+            }
 
+            await _context.SaveChangesAsync();
             return domain;
         }
+
     }
 }
 
