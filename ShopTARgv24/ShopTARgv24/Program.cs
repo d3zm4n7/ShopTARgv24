@@ -33,7 +33,8 @@ namespace ShopTARgv24
 
             builder.Services.AddScoped<ICocktailServices, CocktailServices>();
             builder.Services.AddHttpClient<ICocktailServices, CocktailServices>();
-
+            // WebClient for OpenWeatherServices
+            builder.Services.AddScoped<IOpenWeatherServices, OpenWeatherServices>();
 
             var app = builder.Build();
 

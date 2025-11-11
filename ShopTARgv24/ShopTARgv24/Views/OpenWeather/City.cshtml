@@ -1,0 +1,62 @@
+﻿@model ShopTARgv24.Models.OpenWeather.OpenWeatherViewModel
+
+<div class="container mt-5">
+
+    <h2 class="text-center mb-4">Forecast for the selected city</h2>
+
+    <div class="text-center mb-4">
+        <h3>@Model.Name</h3>
+        <img src="https://openweathermap.org/img/wn/@(Model.Icon).png" alt="Weather Icon" />
+    </div>
+
+    <div class="row justify-content-center g-3">
+
+        <div class="col-md-4">
+            <div class="card text-center p-3">
+                <h5>Temperature</h5>
+                <p class="fw-bold">@Model.Temp °C</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card text-center p-3">
+                <h5>Feels Like</h5>
+                <p class="fw-bold">@Model.feels_like °C</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card text-center p-3">
+                <h5>Humidity</h5>
+                <p class="fw-bold">@Model.Humidity %</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card text-center p-3">
+                <h5>Pressure</h5>
+                <p class="fw-bold">@Model.Pressure hPa</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card text-center p-3">
+                <h5>Wind speed</h5>
+                <p class="fw-bold">@Model.Speed m/s</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card text-center p-3">
+                <h5>Description</h5>
+                <p class="fw-bold">@Model.Description</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="mt-4">
+        <a asp-controller="openWeather" asp-action="Index" class="btn btn-success">Back to search</a>
+    </div>
+
+</div>

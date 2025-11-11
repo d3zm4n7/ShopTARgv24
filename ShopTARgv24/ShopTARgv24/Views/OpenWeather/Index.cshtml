@@ -1,0 +1,25 @@
+﻿@model ShopTARgv24.Models.OpenWeather.OpenWeatherSearchViewModel
+
+<div class="d-flex justify-content-center align-items-center" style="min-height: 60vh;">
+    <div style="width:100%; max-width:450px;">
+        <h2 class="text-center mb-4" style="font-family: Arial; font-weight:600; color:#2c3e50;">Search the forecast in a city</h2>
+        <form method="post" asp-action="searchCity" asp-controller="openWeather">
+            <div class="mb-3">
+                <label asp-for="Name" class="form-label" style="font-size:1.1rem; color:#34495e;">City name:</label>
+                <div style="position:relative;">
+                    <input asp-for="Name"
+                           class="form-control"
+                           style="padding-left:20px; border:none; border-radius:25px; background:#f0f4fa; box-shadow:0 2px 8px rgba(52,152,219,0.08); height:48px; font-size:1.1rem;" />
+                </div>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="d-grid">
+                <button type="submit"
+                        class="btn btn-primary btn-block"
+                        style="background:#3498db; border:none; font-weight:500; border-radius:25px; height:48px; font-size:1.1rem; box-shadow:0 2px 8px rgba(52,152,219,0.08);">
+                    Search
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
