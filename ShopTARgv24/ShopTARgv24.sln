@@ -13,6 +13,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopTARgv24.Core", "ShopTAR
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopTARgv24.RealEstateTest", "RealEstateTest\ShopTARgv24.RealEstateTest.csproj", "{4DFFE966-876D-48E9-9B0E-D0AD7B3DF34A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopTARgv24.SpaceshipTest", "ShopTARgv24.SpaceshipTest\ShopTARgv24.SpaceshipTest.csproj", "{89F5A072-DD74-47B9-B337-C322A6C597F2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{02CC1B1C-AD08-432E-B01B-B563BB30212F} = {02CC1B1C-AD08-432E-B01B-B563BB30212F}
+		{ADB1A279-0589-4E26-B3A8-7CE55C7E248F} = {ADB1A279-0589-4E26-B3A8-7CE55C7E248F}
+		{BD87B737-E26C-4959-B417-158522A5A4EB} = {BD87B737-E26C-4959-B417-158522A5A4EB}
+		{D39801DD-622D-47C1-9395-DA8556BD949A} = {D39801DD-622D-47C1-9395-DA8556BD949A}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +47,10 @@ Global
 		{4DFFE966-876D-48E9-9B0E-D0AD7B3DF34A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DFFE966-876D-48E9-9B0E-D0AD7B3DF34A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4DFFE966-876D-48E9-9B0E-D0AD7B3DF34A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89F5A072-DD74-47B9-B337-C322A6C597F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89F5A072-DD74-47B9-B337-C322A6C597F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89F5A072-DD74-47B9-B337-C322A6C597F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89F5A072-DD74-47B9-B337-C322A6C597F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
