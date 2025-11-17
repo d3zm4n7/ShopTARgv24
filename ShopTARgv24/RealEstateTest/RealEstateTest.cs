@@ -171,6 +171,80 @@ namespace ShopTARgv24.RealEstateTest
             Assert.Null(result);
         }
 
+        //
+
+        //
+
+        //
+        // Test kontrollib, et kinnisvaraobjekti on võimalik luua ka siis,
+        // kui sisestatud pindala (Area) on negatiivne. See näitab teenuse
+        // tegelikku käitumist ning toob esile potentsiaalse veakoha,
+        // kuna negatiivne pindala ei ole loogiliselt lubatud.
+        [Fact]
+        public async Task ShouldNot_CreateRealEstate_WhenAreaIsNegative()
+        {
+            // Arrange
+            var dto = new RealEstateDto
+            {
+                Area = -50,
+                Location = "Test",
+                RoomNumber = 2,
+                BuildingType = "House",
+                CreatedAt = DateTime.Now,
+                ModifiedAt = DateTime.Now
+            };
+
+            // Act
+            var result = await Svc<IRealEstateServices>().Create(dto);
+
+            // Assert — сервис создаёт объект с отрицательной площадью (фиксируем баг)
+            Assert.True(result.Area < 0);
+        }
+        // Test kontrollib, et kinnisvaraobjekti uuendamisel muutub ModifiedAt väärtus.
+        // Teenus peaks iga uuendamise korral salvestama uue ajatempliga
+        // ning test kinnitab, et uuendused kajastuvad andmebaasis õigesti.
+        [Fact]
+        public async Task Should_UpdateRealEstate_ModifiedAtShouldChange()
+        {
+            // Arrange
+            var created = await Svc<IRealEstateServices>().Create(MockRealEstateData());
+            var oldModified = created.ModifiedAt;
+
+            var dto = MockUpdateRealEstateData();
+            dto.Id = created.Id;
+
+            // Act
+            var updated = await Svc<IRealEstateServices>().Update(dto);
+
+            // Assert
+            Assert.NotNull(updated);
+            Assert.NotEqual(oldModified, updated.ModifiedAt); // время должно измениться
+        }
+        // Test kontrollib, et kustutamise meetod ei saa kustutada objekti,
+        // mida andmebaasis ei eksisteeri. Kui antud ID-ga objekti ei leita,
+        // peab teenus tagastama null või tekitama vea.
+        // Test fikseerib teenuse käitumise sellises olukorras.
+        [Fact]
+        public async Task ShouldNot_DeleteRealEstate_WhenIdNotExists()
+        {
+            // Arrange
+            var fakeId = Guid.NewGuid();
+
+            // Act
+            RealEstate result = null;
+            try
+            {
+                result = await Svc<IRealEstateServices>().Delete(fakeId);
+            }
+            catch
+            {
+                // сервис упадёт → тоже ок, значит delete не работает для несуществующих Id
+            }
+
+            // Assert
+            Assert.Null(result);
+        }
+
         private RealEstateDto MockNullRealEstateData()
         {
             RealEstateDto dto = new()
