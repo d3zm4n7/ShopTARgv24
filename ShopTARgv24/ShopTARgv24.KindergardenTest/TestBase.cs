@@ -30,10 +30,10 @@ namespace ShopTARgv24.KindergardenTest
             services.AddScoped<IFileServices, FileServices>();
             services.AddScoped<IHostEnvironment, MockHostEnvironment>();
 
-            services.AddDbContext<ShopTARgv24Context>(x =>
+            services.AddDbContext<ShopTARgv24Context>(cfg =>
             {
-                x.UseInMemoryDatabase("TEST");
-                x.ConfigureWarnings(b => b.Ignore(InMemoryEventId.TransactionIgnoredWarning));
+                cfg.UseInMemoryDatabase("KindergardenTestDb");
+                cfg.ConfigureWarnings(w => w.Ignore(InMemoryEventId.TransactionIgnoredWarning));
             });
 
             RegisterMacros(services);

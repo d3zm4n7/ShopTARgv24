@@ -4,10 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.14.36414.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopTARgv24", "ShopTARgv24\ShopTARgv24.csproj", "{ADB1A279-0589-4E26-B3A8-7CE55C7E248F}"
-	ProjectSection(ProjectDependencies) = postProject
-		{BDBE71EC-5664-4395-B662-D7AA137B7953} = {BDBE71EC-5664-4395-B662-D7AA137B7953}
-		{D39801DD-622D-47C1-9395-DA8556BD949A} = {D39801DD-622D-47C1-9395-DA8556BD949A}
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopTARgv24.ApplicationServices", "ShopTARgv24.ApplicationServices\ShopTARgv24.ApplicationServices.csproj", "{02CC1B1C-AD08-432E-B01B-B563BB30212F}"
 EndProject
