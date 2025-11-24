@@ -58,24 +58,16 @@ else
                 </div>
             </div>
         </div>
-
-        @if (Model.Image != null && Model.Image.Any())
+        <div>
+        @foreach (var images in Model.Image)
         {
-            <div>
-                @foreach (var photo in Model.Image)
-                {
-                    <div style="margin-bottom: 15px;">
-                        <img src="@photo.Image" alt="@photo.ImageTitle" style="max-width: 300px;" />
-                        <p>@photo.ImageTitle</p>
-                    </div>
-                }
+            <div class="d-flex align-items-center mb-3">
+                <partial name="_Images" model="images" />
+                    <input asp-action="removeImage" asp-controller="realestate" asp-route-imageId="@images.Image"
+                        type="submit" class="btn btn-danger ms-3" value="Delete" />
             </div>
         }
-        else
-        {
-            <p>No photos available.</p>
-        }
-
+        </div>
         @if (Model.Id.HasValue)
         {
             <input asp-action="update" asp-controller="realestate" type="submit" class="btn btn-primary" value="Update" />
