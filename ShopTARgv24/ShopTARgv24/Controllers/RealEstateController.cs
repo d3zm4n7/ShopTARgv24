@@ -133,6 +133,15 @@ namespace ShopTARgv24.Controllers
                 Location = vm.Location,
                 RoomNumber = vm.RoomNumber,
                 BuildingType = vm.BuildingType,
+                Files = vm.Files,
+                Image = vm.Image
+                    .Select(x => new FileToDatabaseDto
+                    {
+                        Id = x.Id,
+                        ImageData = x.ImageData,
+                        ImageTitle = x.ImageTitle,
+                        RealEstateId = x.RealEstateId,
+                    }).ToArray(),
 
                 CreatedAt = vm.CreatedAt,
                 ModifiedAt = vm.ModifiedAt,
