@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "404 - Page not found.";
+}
+
+<div class="text-center" style="padding-top: 50px;">
+    <h1 class="display-1 fw-bold text-danger">404</h1>
+    <p class="fs-3"> <span class="text-danger">Ooopsy!</span> Page not found.</p>
+    <p class="lead">
+        Page what your were looking is not found.
+    </p>
+    <a href="/" class="btn btn-primary">Home</a>
+</div>
+
+<div class="alert alert-danger">
+    <h4 class="alert-heading">An error occurred!</h4>
+    <p>If you contact support, please provide this ID:</p>
+    <hr>
+    <p class="mb-0 font-monospace">
+        Request ID: <strong>@ViewBag.RequestId</strong>
+    </p>
+</div>

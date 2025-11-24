@@ -1,4 +1,4 @@
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using ShopTARgv24.Models;
 
@@ -26,7 +26,24 @@ namespace ShopTARgv24.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
+            // Получаем ID текущей активности или ID запроса
+            var requestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
+
+            // Передаем во View через ViewBag (или через Model)
+            ViewBag.RequestId = requestId;
+
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        // Метод для 404 (который мы создали ранее)
+        [Route("Home/NotFound")]
+        public IActionResult NotFound(int code)
+        {
+            // То же самое, чтобы пользователь мог сообщить ID техподдержке
+            var requestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
+            ViewBag.RequestId = requestId;
+
+            return View();
         }
     }
 }
