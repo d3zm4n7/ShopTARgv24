@@ -25,7 +25,7 @@ namespace ShopTARgv24.KindergardenTest
 
         public virtual void SetupServices(IServiceCollection services)
         {
-            // Важно: используем правильные имена классов с 's' в середине
+            
             services.AddScoped<IKindergardensServices, KindergardensServices>();
             services.AddScoped<IFileServices, FileServices>();
             services.AddScoped<IHostEnvironment, MockHostEnvironment>();
