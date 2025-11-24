@@ -7,10 +7,10 @@ namespace ShopTARgv24.Models.RealEstates
     public class RealEstateCreateUpdateViewModel
     {
         public Guid? Id { get; set; }
-        [Range(0, double.MaxValue, ErrorMessage = "Area cannot be negative")]
+        [Range(1, double.MaxValue, ErrorMessage = "Area cannot be negative")]
         public double? Area { get; set; }
         public string? Location { get; set; }
-        [Range(0, int.MaxValue, ErrorMessage = "Room Number can't be negative")]
+        [Range(1, int.MaxValue, ErrorMessage = "Room Number can't be zero or negative")]
         public int? RoomNumber { get; set; }
         public string? BuildingType { get; set; }
         public List<IFormFile>? Files { get; set; }
