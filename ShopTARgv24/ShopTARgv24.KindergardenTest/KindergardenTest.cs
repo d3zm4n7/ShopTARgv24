@@ -59,7 +59,7 @@ namespace ShopTARgv24.KindergardenTest
             // Assert
             Assert.NotNull(deleted);
             Assert.Equal(created.Id, deleted.Id);
-            Assert.Null(resultAfterDelete); // После удаления поиск возвращает null
+            Assert.Null(resultAfterDelete); 
         }
 
         // ТЕСТ 4: Проверка обновления данных (Update)
@@ -69,24 +69,20 @@ namespace ShopTARgv24.KindergardenTest
             // Arrange
             var created = await Svc<IKindergardensServices>().Create(MockKindergardenData());
 
-            // --- ИСПРАВЛЕНИЕ ---
-            // Получаем доступ к контексту базы данных и очищаем трекер изменений.
-            // Это имитирует ситуацию, когда между запросами контекст "забывает" старые объекты,
-            // позволяя сервису Update прикрепить новую версию объекта с тем же ID.
+           
             var context = Svc<ShopTARgv24Context>();
             context.ChangeTracker.Clear();
-            // -------------------
-
+          
             var updateDto = MockUpdateKindergardenData();
-            updateDto.Id = created.Id; // Обновляем созданную запись
+            updateDto.Id = created.Id; 
 
             // Act
             var updated = await Svc<IKindergardensServices>().Update(updateDto);
 
             // Assert
             Assert.NotNull(updated);
-            Assert.Equal(updateDto.GroupName, updated.GroupName); // Имя изменилось
-            Assert.NotEqual(created.GroupName, updated.GroupName); // Не равно старому
+            Assert.Equal(updateDto.GroupName, updated.GroupName); 
+            Assert.NotEqual(created.GroupName, updated.GroupName); 
             Assert.Equal(updateDto.ChildrenCount, updated.ChildrenCount);
         }
 
@@ -102,8 +98,34 @@ namespace ShopTARgv24.KindergardenTest
 
             // Assert
             Assert.Null(result);
+        }
 
-        // --- ВСПОМОГАТЕЛЬНЫЕ МЕТОДЫ (MOCKS) ---
+        // ТЕСТ 6: Проверка, что при обновлении сохраняется дата создания, а дата изменения обновляется
+        [Fact]
+        public async Task Should_PreserveCreatedAt_And_UpdateUpdatedAt_When_UpdateKindergarden()
+        {
+            // Arrange
+            var created = await Svc<IKindergardensServices>().Create(MockKindergardenData());
+
+            await Task.Delay(100);
+
+            var context = Svc<ShopTARgv24Context>();
+            context.ChangeTracker.Clear();
+
+            var updateDto = MockUpdateKindergardenData();
+            updateDto.Id = created.Id;
+            updateDto.CreatedAt = created.CreatedAt;
+
+            // Act
+            var updated = await Svc<IKindergardensServices>().Update(updateDto);
+
+            // Assert
+            Assert.NotNull(updated);
+            Assert.Equal(created.CreatedAt, updated.CreatedAt);
+            Assert.NotEqual(created.UpdatedAt, updated.UpdatedAt);
+            Assert.True(updated.UpdatedAt > created.CreatedAt);
+        }
+
 
         private KindergardenDto MockKindergardenData()
         {
@@ -126,7 +148,6 @@ namespace ShopTARgv24.KindergardenTest
                 ChildrenCount = 20,
                 KindergardenName = "Tartu Lasteaed",
                 TeacherName = "Jüri Juurikas",
-                // UpdatedAt здесь не важен, так как сервис ставит DateTime.Now
             };
         }
     }
