@@ -4,6 +4,7 @@ using ShopTARgv24.Core.Domain;
 using ShopTARgv24.Core.Dto;
 using ShopTARgv24.Core.ServiceInterface;
 using ShopTARgv24.Data;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ShopTARgv24.ApplicationServices.Services
 {
@@ -119,6 +120,19 @@ namespace ShopTARgv24.ApplicationServices.Services
                     }
                 }
             }
+        }
+
+        public async Task<FileToDatabase> RemoveImageFromDatabase(FileToDatabaseDto[] dtos)
+        {
+            foreach(var dto in dtos)
+            {
+                var imageId = await _context.FileToDatabases
+                    .FirstOrDefaultAsync(x => x.Id == dto.Id);
+
+                _context.FileToDatabases.Remove(imageId);
+                await _context.SaveChangesAsync();
+            }
+            return null;
         }
     }
 }

@@ -59,6 +59,16 @@ namespace ShopTARgv24.ApplicationServices.Services
             var realestate = await _context.RealEstates
                 .FirstOrDefaultAsync(x => x.Id == id);
 
+            var images = await _context.FileToDatabases
+                .Where(x => x.RealEstateId == id)
+                .Select(x=>new FileToDatabaseDto
+                {
+                    Id = x.Id,
+                    ImageTitle = x.ImageTitle,
+                    RealEstateId = x.RealEstateId
+                })
+                .ToArrayAsync();
+            await _fileServices.RemoveImageFromDatabase(images);
             _context.RealEstates.Remove(realestate);
             await _context.SaveChangesAsync();
 

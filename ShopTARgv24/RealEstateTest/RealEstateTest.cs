@@ -312,10 +312,12 @@ namespace ShopTARgv24.RealEstateTest
         [Fact]
         public async Task Should_DeleteRelatedImages_WhenDeleteRealEstate()
         {
+            // Arrange
             var dto3 = MockRealEstateData();
-            
+            // Act
             var created = await Svc<IRealEstateServices>().Create(dto3);
             var id = (Guid)created.Id;
+
             var db = Svc<ShopTARgv24.Data.ShopTARgv24Context>();
             db.FileToDatabases.Add(new FileToDatabase{ 
                 Id = Guid.NewGuid(),
@@ -329,14 +331,14 @@ namespace ShopTARgv24.RealEstateTest
                 ImageTitle = "path/to/another_image.jpg",
                 ImageData = new byte[] { 4,5,6 }
             });
-            await db.SaveChangesAsync();
 
             // Act
+            await db.SaveChangesAsync();
             await Svc<IRealEstateServices>().Delete(id);
 
             //Assert 
             var leftovers = db.FileToDatabases.Where(x => x.RealEstateId == id).ToList();
-            Assert.NotEmpty(leftovers);
+            Assert.Empty(leftovers);
         }
 
         [Fact]

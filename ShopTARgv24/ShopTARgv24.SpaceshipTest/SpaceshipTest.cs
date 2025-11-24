@@ -24,7 +24,7 @@ namespace ShopTARgv24.SpaceshipTest
         }
 
         [Fact]
-        public async Task ShoulNot_AddEmptyRealEstate_WhenReturnResult()
+        public async Task ShoulNot_AddEmptySpaceship_WhenReturnResult()
         {
             // Arrange 
             SpaceshipDto dto = SpaceshipDto1();
@@ -36,10 +36,10 @@ namespace ShopTARgv24.SpaceshipTest
             Assert.NotNull(result);
         }
 
-        //ShouldNot_GerByIdRealestate_WhenReturnsNotEqual()
+        //ShouldNot_GetByIdSpaceship_WhenReturnsNotEqual()
         // что при чтении по Id первой записи мы не получаем вторую (то есть сервис реально возвращает правильный объект по Id).
         [Fact]
-        public async Task ShouldNot_GetByIdRealestate_WhenReturnsNotEqual()
+        public async Task ShouldNot_GetByIdSpaceship_WhenReturnsNotEqual()
         {
             // Arrange – создаём две разные записи недвижимости
             var service = Svc<ISpaceshipsServices>();
@@ -56,10 +56,10 @@ namespace ShopTARgv24.SpaceshipTest
         }
 
 
-        //Should_GetByIdRealestate_WhenReturnsEqal()
+        //Should_GetByIdSpaceship_WhenReturnsEqal()
         // что при чтении по Id мы получаем именно ту же запись (Id совпадает).
         [Fact]
-        public async Task Should_GetByIdRealestate_WhenReturnsEqal()
+        public async Task Should_GetByIdSpaceship_WhenReturnsEqal()
         {
             // Arrange – создаём одну запись и запоминаем её Id
             var service = Svc<ISpaceshipsServices>();
@@ -77,10 +77,10 @@ namespace ShopTARgv24.SpaceshipTest
             Assert.Equal(created.Id, result.Id);
         }
 
-        //Should_DeleteByIdRealestate_WhenDeleteRealestate()
+        //Should_DeleteByIdSpaceship_WhenDeleteRealestate()
         // что после удаления по Id запись больше не находится.
         [Fact]
-        public async Task Should_DeleteByIdRealestate_WhenDeleteRealestate()
+        public async Task Should_DeleteByIdSpaceship_WhenDeleteRealestate()
         {
             // Arrange – создаём запись, чтобы потом её удалить
             var service = Svc<ISpaceshipsServices>();
@@ -99,10 +99,10 @@ namespace ShopTARgv24.SpaceshipTest
             Assert.Null(resultAfterDelete);
         }
 
-        //ShouldNot_DeleteByIdRealestate_WhenDidNotDeleteRealEsrare()
+        //ShouldNot_DeleteByIdSpaceship_WhenDidNotDeleteRealEsrare()
         // Что нужно добавить запись и удалить по не существующими Id
         [Fact]
-        public async Task ShouldNot_DeleteByIdRealestate_WhenDidNotDeleteRealEsrare()
+        public async Task ShouldNot_DeleteByIdSpaceship_WhenDidNotDeleteRealEsrare()
         {
             // Arrange – создаём две записи
             var service = Svc<ISpaceshipsServices>();
