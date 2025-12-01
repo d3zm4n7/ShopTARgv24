@@ -4,6 +4,7 @@ using ShopTARgv24.Core.ServiceInterface;
 using ShopTARgv24.ApplicationServices.Services;
 
 
+
 using ShopTARgv24.Data;
 
 namespace ShopTARgv24
@@ -34,6 +35,7 @@ namespace ShopTARgv24
             builder.Services.AddScoped<ICocktailServices, CocktailServices>();
             builder.Services.AddHttpClient<ICocktailServices, CocktailServices>();
 
+            builder.Services.AddScoped<IEmailServices, EmailServices>();
 
             var app = builder.Build();
 
