@@ -1,0 +1,97 @@
+﻿@{
+    ViewData["Title"] = "Чат";
+}
+
+<div class="container">
+    <h2 class="text-center mb-4">Комната чата</h2>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="userInput" class="form-label fw-bold">Nickname (Никнейм)</label>
+                        <input type="text" class="form-control" id="userInput" placeholder="Введите ваше имя">
+                    </div>
+                    <div class="mb-3">
+                        <label for="messageInput" class="form-label fw-bold">Message (Сообщение)</label>
+                        <input type="text" class="form-control" id="messageInput" placeholder="Введите сообщение...">
+                    </div>
+                    <button id="sendButton" class="btn btn-primary w-100" disabled>Отправить</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header bg-light">
+                    История сообщений
+                </div>
+                <div class="card-body" style="height: 400px; overflow-y: auto; background-color: #f8f9fa;">
+                    <ul id="messagesList" class="list-unstyled">
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
+
+    <script>
+        // 2. Инициализация соединения
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl("/chatHub") // Убедитесь, что этот путь совпадает с Program.cs
+            .build();
+
+        // Элементы управления
+        const btnSend = document.getElementById("sendButton");
+        const list = document.getElementById("messagesList");
+        const userIn = document.getElementById("userInput");
+        const msgIn = document.getElementById("messageInput");
+
+        // 3. Прием сообщения от сервера
+        connection.on("ReceiveMessage", function (user, message) {
+            // Создаем HTML структуру сообщения
+            const li = document.createElement("li");
+            li.style.marginBottom = "10px";
+            li.style.padding = "10px";
+            li.style.background = "white";
+            li.style.borderRadius = "8px";
+            li.style.border = "1px solid #ddd";
+
+            li.innerHTML = `<strong>${user}</strong>: <span>${message}</span>`;
+
+            // Добавляем в список
+            list.appendChild(li);
+
+            // Авто-прокрутка вниз к новому сообщению
+            li.scrollIntoView({ behavior: "smooth" });
+        });
+
+        // 4. Запуск соединения
+        connection.start().then(function () {
+            btnSend.disabled = false; // Включаем кнопку только когда соединились
+            console.log("Connected to SignalR!");
+        }).catch(function (err) {
+            return console.error(err.toString());
+        });
+
+        // 5. Отправка сообщения по кнопке
+        btnSend.addEventListener("click", function (event) {
+            const user = userIn.value;
+            const message = msgIn.value;
+
+            if (!user || !message) return; // Не отправляем пустые
+
+            connection.invoke("SendMessage", user, message).catch(function (err) {
+                return console.error(err.toString());
+            });
+
+            msgIn.value = ""; // Очистить поле ввода сообщения
+            msgIn.focus();    // Вернуть фокус в поле
+            event.preventDefault();
+        });
+    </script>
+}
