@@ -3,7 +3,7 @@
 }
 
 <div class="container">
-    <h2 class="text-center mb-4">Комната чата</h2>
+    <h2 class="text-center mb-4">Chat room</h2>
 
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -11,20 +11,20 @@
             <div class="card mb-3">
                 <div class="card-body">
                     <div class="mb-3">
-                        <label for="userInput" class="form-label fw-bold">Nickname (Никнейм)</label>
-                        <input type="text" class="form-control" id="userInput" placeholder="Введите ваше имя">
+                        <label for="userInput" class="form-label fw-bold">Nickname</label>
+                        <input type="text" class="form-control" id="userInput" placeholder="Enter your nickname">
                     </div>
                     <div class="mb-3">
-                        <label for="messageInput" class="form-label fw-bold">Message (Сообщение)</label>
-                        <input type="text" class="form-control" id="messageInput" placeholder="Введите сообщение...">
+                        <label for="messageInput" class="form-label fw-bold">Message</label>
+                        <input type="text" class="form-control" id="messageInput" placeholder="Enter your message...">
                     </div>
-                    <button id="sendButton" class="btn btn-primary w-100" disabled>Отправить</button>
+                    <button id="sendButton" class="btn btn-primary w-100" disabled>Send Message</button>
                 </div>
             </div>
 
             <div class="card">
                 <div class="card-header bg-light">
-                    История сообщений
+                    Message history
                 </div>
                 <div class="card-body" style="height: 400px; overflow-y: auto; background-color: #f8f9fa;">
                     <ul id="messagesList" class="list-unstyled">
@@ -40,57 +40,64 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
 
     <script>
-        // 2. Инициализация соединения
         const connection = new signalR.HubConnectionBuilder()
-            .withUrl("/chatHub") // Убедитесь, что этот путь совпадает с Program.cs
+            .withUrl("/chatHub")
             .build();
 
-        // Элементы управления
         const btnSend = document.getElementById("sendButton");
         const list = document.getElementById("messagesList");
         const userIn = document.getElementById("userInput");
         const msgIn = document.getElementById("messageInput");
 
-        // 3. Прием сообщения от сервера
-        connection.on("ReceiveMessage", function (user, message) {
-            // Создаем HTML структуру сообщения
+                        // 3. Прием сообщения от сервера (обратите внимание на третий аргумент 'timestamp')
+        connection.on("ReceiveMessage", function (user, message, timestamp) {
+
             const li = document.createElement("li");
+
+            // Стили для самого блока сообщения (можно оставить ваши)
             li.style.marginBottom = "10px";
             li.style.padding = "10px";
             li.style.background = "white";
             li.style.borderRadius = "8px";
             li.style.border = "1px solid #ddd";
 
-            li.innerHTML = `<strong>${user}</strong>: <span>${message}</span>`;
+            // Формируем HTML. Добавляем <small> для времени справа или снизу.
+            // Класс text-muted делает цвет серым (Bootstrap).
+            li.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <strong>${user}</strong>: <span>${message}</span>
+                    </div>
+                    <small class="text-muted" style="font-size: 0.75em;">${timestamp}</small>
+                </div>
+            `;
 
-            // Добавляем в список
-            list.appendChild(li);
+            document.getElementById("messagesList").appendChild(li);
 
-            // Авто-прокрутка вниз к новому сообщению
+            // Авто-прокрутка
             li.scrollIntoView({ behavior: "smooth" });
         });
 
-        // 4. Запуск соединения
+
         connection.start().then(function () {
-            btnSend.disabled = false; // Включаем кнопку только когда соединились
+            btnSend.disabled = false;
             console.log("Connected to SignalR!");
         }).catch(function (err) {
             return console.error(err.toString());
         });
 
-        // 5. Отправка сообщения по кнопке
         btnSend.addEventListener("click", function (event) {
             const user = userIn.value;
             const message = msgIn.value;
 
-            if (!user || !message) return; // Не отправляем пустые
+            if (!user || !message) return;
 
             connection.invoke("SendMessage", user, message).catch(function (err) {
                 return console.error(err.toString());
             });
 
-            msgIn.value = ""; // Очистить поле ввода сообщения
-            msgIn.focus();    // Вернуть фокус в поле
+            msgIn.value = "";
+            msgIn.focus();
             event.preventDefault();
         });
     </script>

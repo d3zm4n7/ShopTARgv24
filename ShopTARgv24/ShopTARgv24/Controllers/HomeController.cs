@@ -34,7 +34,10 @@ namespace ShopTARgv24.Controllers
 
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
+        public IActionResult Chat()
+        {
+            return View();
+        }
         // Метод для 404 (который мы создали ранее)
         [Route("Home/NotFound")]
         public IActionResult NotFound(int code)
